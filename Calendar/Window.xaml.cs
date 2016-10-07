@@ -26,6 +26,7 @@ namespace Calendar
         private int myYear = DateTime.Now.Year, myMonth = DateTime.Now.Month;
         private int current_month = DateTime.Now.Month;//当前月,是不变的
         private object previous_laber = new Label();
+        private bool is_selected_day = false; //是否选中某一天
         #endregion
 
         private void SetTexts()
@@ -84,10 +85,13 @@ namespace Calendar
             if (((Label)sender).Background != Brushes.Gray) //保留当前天的高亮
                 ((Label)sender).Background = new SolidColorBrush(Color.FromArgb(128, 125, 125, 125));
             
-            #region 点击日期,计算农历
-            string selected_day = myMonth.ToString() + "/" + ((Label)sender).Content + "/" + myYear;
-            DateTime get_selected_day = Convert.ToDateTime(selected_day);
-            show_lunar_day(get_selected_day);
+            #region 鼠标进入日期,计算农历
+            if (!is_selected_day)
+            {
+                string selected_day = myMonth.ToString() + "/" + ((Label)sender).Content + "/" + myYear;
+                DateTime get_selected_day = Convert.ToDateTime(selected_day);
+                show_lunar_day(get_selected_day);
+            }
             #endregion
         }
 
@@ -115,10 +119,17 @@ namespace Calendar
             #region 高亮点击的日期
             ((Label)sender).BorderThickness = new Thickness(1.0);
             ((Label)sender).BorderBrush = Brushes.Black;
-            previous_laber = sender;
+            previous_laber = sender; //保存高亮的对象,用于取消高亮
             #endregion
-
-
+            #region 鼠标选择日期,计算农历
+            is_selected_day = true;
+            if (is_selected_day)
+            {
+                string selected_day = myMonth.ToString() + "/" + ((Label)sender).Content + "/" + myYear;
+                DateTime get_selected_day = Convert.ToDateTime(selected_day);
+                show_lunar_day(get_selected_day);
+            }
+            #endregion
         }
 
         private void GoMouseEnter(object sender, MouseEventArgs e)
