@@ -80,12 +80,23 @@ namespace Calendar
         {
             if (((Label)sender).Background != Brushes.Gray) //保留当前天的高亮
                 ((Label)sender).Background = new SolidColorBrush(Color.FromArgb(128, 125, 125, 125));
+            
+            #region 点击日期,计算农历
+            string selected_day = myMonth.ToString() + "/" + ((Label)sender).Content + "/" + myYear;
+            DateTime get_selected_day = Convert.ToDateTime(selected_day);
+            show_lunar_day(get_selected_day);
+            #endregion
         }
 
         private void NumMouseLeave(object sender, MouseEventArgs e)
         {
             if (((Label)sender).Background != Brushes.Gray) //保留当前天的高亮
                 ((Label)sender).Background = null;
+
+            #region 取消高亮点击的日期
+            ((Label)sender).BorderThickness = new Thickness(0.0);
+            ((Label)sender).BorderBrush = Brushes.Black;
+            #endregion
         }
 
         private void NumMouseClick(object sender, MouseEventArgs e)
@@ -99,11 +110,13 @@ namespace Calendar
                     RightArrowClicked(null, null);
             }
             #endregion
-            #region 点击日期,计算农历
-            string selected_day = myMonth.ToString() + "/"+ ((Label)sender).Content + "/" + myYear;
-            DateTime get_selected_day = Convert.ToDateTime(selected_day);
-            show_lunar_day(get_selected_day);
+
+            #region 高亮点击的日期
+            ((Label)sender).BorderThickness = new Thickness(1.0);
+            ((Label)sender).BorderBrush = Brushes.Black;
             #endregion
+
+
         }
 
         private void GoMouseEnter(object sender, MouseEventArgs e)
@@ -116,7 +129,7 @@ namespace Calendar
             ((TextBlock)sender).Foreground = Brushes.Gray;
         }
 
-        #region 显示农历日期
+        #region 显示农历日期函数
         private void show_lunar_day(DateTime day_time_now)
         {
             LunDay lun_day = new LunDay();
