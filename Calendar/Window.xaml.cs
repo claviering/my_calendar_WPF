@@ -28,8 +28,16 @@ namespace Calendar
             DateTime tempDateTime = new DateTime(myYear, myMonth, 1); //获取当年当月的第一天
             tempDateTime = tempDateTime.AddDays((int)tempDateTime.DayOfWeek == 0 ? -7 : -(int)tempDateTime.DayOfWeek);//计算第一个位置是那一天
             for (int i = 10; i < myGrid.Children.Count; i++) //遍厉所有日期,改变他们的content,对应上日期
-            {             
+            {
                 ((Label)myGrid.Children[i]).Foreground = tempDateTime.Month == myMonth ? Brushes.Black : Brushes.Gray;//为日期上色
+                ///<summary>
+                ///给这个月的星期六,星期日上红色
+                /// </summary>
+                if (((int)tempDateTime.DayOfWeek == 6 || (int)tempDateTime.DayOfWeek == 0) && tempDateTime.Month == myMonth)
+                {
+                    ((Label)myGrid.Children[i]).Foreground = Brushes.Red;
+                }
+                
                 ((Label)myGrid.Children[i]).Content = tempDateTime.Day;
                 tempDateTime = tempDateTime.AddDays(1);//日期加1
             }
