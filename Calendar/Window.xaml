@@ -29,13 +29,13 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-		<TextBlock x:Name="label00" Grid.Row="1" Grid.Column="0" Text="Sun" TextAlignment="Center" FontSize="10" />
-        <TextBlock x:Name="label01" Grid.Row="1" Grid.Column="1" Text="Mon" TextAlignment="Center" FontSize="10" />
-        <TextBlock x:Name="label02" Grid.Row="1" Grid.Column="2" Text="Tue" TextAlignment="Center" FontSize="10" />
-        <TextBlock x:Name="label03" Grid.Row="1" Grid.Column="3" Text="Wed" TextAlignment="Center" FontSize="10" />
-        <TextBlock x:Name="label04" Grid.Row="1" Grid.Column="4" Text="Thu" TextAlignment="Center" FontSize="10" />
-        <TextBlock x:Name="label05" Grid.Row="1" Grid.Column="5" Text="Fri" TextAlignment="Center" FontSize="10" />
-        <TextBlock x:Name="label06" Grid.Row="1" Grid.Column="6" Text="Sat" TextAlignment="Center" FontSize="10" />
+            <TextBlock x:Name="label00" Grid.Row="1" Grid.Column="0" Text="Sun" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
+            <TextBlock x:Name="label01" Grid.Row="1" Grid.Column="1" Text="Mon" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
+            <TextBlock x:Name="label02" Grid.Row="1" Grid.Column="2" Text="Tue" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
+            <TextBlock x:Name="label03" Grid.Row="1" Grid.Column="3" Text="Wed" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
+            <TextBlock x:Name="label04" Grid.Row="1" Grid.Column="4" Text="Thu" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
+            <TextBlock x:Name="label05" Grid.Row="1" Grid.Column="5" Text="Fri" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
+            <TextBlock x:Name="label06" Grid.Row="1" Grid.Column="6" Text="Sat" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
         <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Name="txtCMonth" Text="0000-00" TextAlignment="Center" FontSize="19" FontWeight="Bold" />
         <TextBlock Grid.Column="1" Name="txtLeft" Text="&lt;&lt;" TextAlignment="Center" FontSize="18" Foreground="Gray" MouseUp="LeftArrowClicked" Cursor="Hand" MouseEnter="GoMouseEnter" MouseLeave="GoMouseLeave" FontWeight="Bold" />
         <TextBlock Grid.Column="5" Name="txtRight" Text=">>" TextAlignment="Center" FontSize="18" Foreground="Gray" MouseUp="RightArrowClicked" Cursor="Hand" MouseEnter="GoMouseEnter" MouseLeave="GoMouseLeave" FontWeight="Bold" />
@@ -82,5 +82,6 @@
         <Label Content="41" Grid.Row="7" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
         <Label Content="42" Grid.Row="7" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
     </Grid>
+        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="TextBlock" Margin="0,40,0,122"/>
     </StackPanel>
 </Window>
