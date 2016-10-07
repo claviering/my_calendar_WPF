@@ -1,0 +1,13 @@
+C:\Users\sunn\Desktop\Calendar-master\Calendar\bin\Debug\Calendar.exe
+C:\Users\sunn\Desktop\Calendar-master\Calendar\bin\Debug\Calendar.pdb
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Debug\Calendar.csprojResolveAssemblyReference.cache
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Debug\Window.g.cs
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Debug\App.g.cs
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Debug\Calendar_MarkupCompile.cache
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Debug\Calendar_MarkupCompile.lref
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Debug\Window.baml
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Debug\Calendar.g.resources
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Debug\Calendar.Properties.Resources.resources
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Debug\Calendar.csproj.GenerateResource.Cache
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Debug\Calendar.exe
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Debug\Calendar.pdb
