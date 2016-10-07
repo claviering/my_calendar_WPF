@@ -77,12 +77,14 @@ namespace Calendar
 
         private void NumMouseEnter(object sender, MouseEventArgs e)
         {
-            ((Label)sender).Background = new SolidColorBrush(Color.FromArgb(128, 125, 125, 125));
+            if (((Label)sender).Background != Brushes.Gray) //保留当前天的高亮
+                ((Label)sender).Background = new SolidColorBrush(Color.FromArgb(128, 125, 125, 125));
         }
 
         private void NumMouseLeave(object sender, MouseEventArgs e)
         {
-            ((Label)sender).Background = null;
+            if (((Label)sender).Background != Brushes.Gray) //保留当前天的高亮
+                ((Label)sender).Background = null;
         }
 
         private void NumMouseClick(object sender, MouseEventArgs e)
