@@ -22,9 +22,12 @@ namespace Calendar
             Methods.ExtendAeroToFullWindow(this);
         }
 
+        #region 定义一些成员变量
         private int myYear = DateTime.Now.Year, myMonth = DateTime.Now.Month;
         private int current_month = DateTime.Now.Month;//当前月,是不变的
-        
+        private object previous_laber = new Label();
+        #endregion
+
         private void SetTexts()
         {
             DateTime tempDateTime = new DateTime(myYear, myMonth, 1); //获取当年当月的第一天
@@ -92,15 +95,14 @@ namespace Calendar
         {
             if (((Label)sender).Background != Brushes.Gray) //保留当前天的高亮
                 ((Label)sender).Background = null;
-
-            #region 取消高亮点击的日期
-            ((Label)sender).BorderThickness = new Thickness(0.0);
-            ((Label)sender).BorderBrush = Brushes.Black;
-            #endregion
         }
 
         private void NumMouseClick(object sender, MouseEventArgs e)
         {
+            #region 取消高亮点击的日期
+            ((Label)previous_laber).BorderThickness = new Thickness(0.0);
+            ((Label)previous_laber).BorderBrush = Brushes.Black;
+            #endregion
             #region 点到灰色的日期,转跳月份
             if (((Label)sender).Foreground == Brushes.Gray)
             {
@@ -110,10 +112,10 @@ namespace Calendar
                     RightArrowClicked(null, null);
             }
             #endregion
-
             #region 高亮点击的日期
             ((Label)sender).BorderThickness = new Thickness(1.0);
             ((Label)sender).BorderBrush = Brushes.Black;
+            previous_laber = sender;
             #endregion
 
 
