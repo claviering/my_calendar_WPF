@@ -22,6 +22,7 @@ namespace Calendar
         }
 
         private int myYear = DateTime.Now.Year, myMonth = DateTime.Now.Month;
+        private int current_month = DateTime.Now.Month;//当前月,是不变的
         
         private void SetTexts()
         {
@@ -30,18 +31,26 @@ namespace Calendar
             for (int i = 10; i < myGrid.Children.Count; i++) //遍厉所有日期,改变他们的content,对应上日期
             {
                 ((Label)myGrid.Children[i]).Foreground = tempDateTime.Month == myMonth ? Brushes.Black : Brushes.Gray;//为日期上色
-                ///<summary>
-                ///给这个月的星期六,星期日上红色
-                /// </summary>
+                #region 给这个月的星期六,星期日上红色
                 if (((int)tempDateTime.DayOfWeek == 6 || (int)tempDateTime.DayOfWeek == 0) && tempDateTime.Month == myMonth)
                 {
                     ((Label)myGrid.Children[i]).Foreground = Brushes.Red;
                 }
-                
-                ((Label)myGrid.Children[i]).Content = tempDateTime.Day;
+                #endregion
+                #region 高亮当前日
+                if (DateTime.Now.Day == tempDateTime.Day && tempDateTime.Month == current_month)
+                    ((Label)myGrid.Children[i]).Background = Brushes.Gray;
+                else
+                    ((Label)myGrid.Children[i]).Background = Brushes.White;
+                #endregion
+
+                ((Label)myGrid.Children[i]).Content = tempDateTime.Day;//改变他们的content
                 tempDateTime = tempDateTime.AddDays(1);//日期加1
             }
             txtCMonth.Text = myYear.ToString() + "-" + (myMonth < 10 ? "0" : "") + myMonth.ToString();//改变年月的内容
+
+            
+
         }
 
         private void RightArrowClicked(object sender, MouseButtonEventArgs e)
