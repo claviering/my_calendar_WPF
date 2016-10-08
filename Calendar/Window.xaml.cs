@@ -142,16 +142,17 @@ namespace Calendar
             ((TextBlock)sender).Foreground = Brushes.Gray;
         }
 
-        #region 给加号添加动画效果
+        #region 给加号添加移动的动画效果
         private void image_MouseEnter(object sender, MouseEventArgs e)
         {
             Image move_image = ((Image)sender);
             Thickness move = new Thickness();
             move = move_image.Margin;
-            int image_move_size = 3;
+            int image_move_size = 2;
             move.Right -= image_move_size;
             move.Bottom -= image_move_size;
             move_image.Margin = move;
+            ((Image)sender).ToolTip = "Add Notes"; //鼠标悬停提示
         }
 
         private void image_MouseLeave(object sender, MouseEventArgs e)
@@ -159,10 +160,24 @@ namespace Calendar
             Image move_image = ((Image)sender);
             Thickness move = new Thickness();
             move = move_image.Margin;
-            int image_move_size = 3;
+            int image_move_size = 2;
             move.Right += image_move_size;
             move.Bottom += image_move_size;
             move_image.Margin = move;
+        }
+        #endregion
+
+        #region 点击加号,文本框可见
+        private void image_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            textBox.Visibility = Visibility;
+        }
+        #endregion
+
+        #region 文本框获取焦点清空提示内容
+        private void textBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            textBox.Text = "";
         }
         #endregion
 

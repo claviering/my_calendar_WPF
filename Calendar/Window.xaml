@@ -8,25 +8,25 @@
         Title="Calendar" mc:Ignorable="d" Height="215" Width="450" FontFamily="Consolas" FontSize="12" Loaded="Window_Loaded" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="ToolWindow" >
     <StackPanel Orientation="Horizontal" >
         <Grid x:Name="myGrid" Width="250">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25" />
-			<RowDefinition Height="13" />
-			<RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="13" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
             <TextBlock x:Name="label00" Grid.Row="1" Grid.Column="0" Text="Sun" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
             <TextBlock x:Name="label01" Grid.Row="1" Grid.Column="1" Text="Mon" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
             <TextBlock x:Name="label02" Grid.Row="1" Grid.Column="2" Text="Tue" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
@@ -34,55 +34,56 @@
             <TextBlock x:Name="label04" Grid.Row="1" Grid.Column="4" Text="Thu" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
             <TextBlock x:Name="label05" Grid.Row="1" Grid.Column="5" Text="Fri" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
             <TextBlock x:Name="label06" Grid.Row="1" Grid.Column="6" Text="Sat" FontWeight="Bold" TextAlignment="Center" FontSize="10" />
-        <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Name="txtCMonth" Text="0000-00" TextAlignment="Center" FontSize="19" FontWeight="Bold" />
-        <TextBlock Grid.Column="1" Name="txtLeft" Text="&lt;&lt;" TextAlignment="Center" FontSize="18" Foreground="Gray" MouseUp="LeftArrowClicked" Cursor="Hand" MouseEnter="GoMouseEnter" MouseLeave="GoMouseLeave" FontWeight="Bold" />
-        <TextBlock Grid.Column="5" Name="txtRight" Text=">>" TextAlignment="Center" FontSize="18" Foreground="Gray" MouseUp="RightArrowClicked" Cursor="Hand" MouseEnter="GoMouseEnter" MouseLeave="GoMouseLeave" FontWeight="Bold" />
-        <Label Content="01" Grid.Row="2" Grid.Column="0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="02" Grid.Row="2" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="03" Grid.Row="2" Grid.Column="2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="04" Grid.Row="2" Grid.Column="3" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="05" Grid.Row="2" Grid.Column="4" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="06" Grid.Row="2" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="07" Grid.Row="2" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="08" Grid.Row="3" Grid.Column="0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="09" Grid.Row="3" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="10" Grid.Row="3" Grid.Column="2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="11" Grid.Row="3" Grid.Column="3" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="12" Grid.Row="3" Grid.Column="4" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="13" Grid.Row="3" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="14" Grid.Row="3" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="15" Grid.Row="4" Grid.Column="0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="16" Grid.Row="4" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="17" Grid.Row="4" Grid.Column="2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="18" Grid.Row="4" Grid.Column="3" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="19" Grid.Row="4" Grid.Column="4" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="20" Grid.Row="4" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="21" Grid.Row="4" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="22" Grid.Row="5" Grid.Column="0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="23" Grid.Row="5" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="24" Grid.Row="5" Grid.Column="2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="25" Grid.Row="5" Grid.Column="3" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="26" Grid.Row="5" Grid.Column="4" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="27" Grid.Row="5" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="28" Grid.Row="5" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="29" Grid.Row="6" Grid.Column="0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="30" Grid.Row="6" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="31" Grid.Row="6" Grid.Column="2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="32" Grid.Row="6" Grid.Column="3" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="33" Grid.Row="6" Grid.Column="4" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="34" Grid.Row="6" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="35" Grid.Row="6" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="36" Grid.Row="7" Grid.Column="0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="37" Grid.Row="7" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="38" Grid.Row="7" Grid.Column="2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="39" Grid.Row="7" Grid.Column="3" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="40" Grid.Row="7" Grid.Column="4" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="41" Grid.Row="7" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-        <Label Content="42" Grid.Row="7" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
-    </Grid>
+            <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Name="txtCMonth" Text="0000-00" TextAlignment="Center" FontSize="19" FontWeight="Bold" />
+            <TextBlock Grid.Column="1" Name="txtLeft" Text="&lt;&lt;" TextAlignment="Center" FontSize="18" Foreground="Gray" MouseUp="LeftArrowClicked" Cursor="Hand" MouseEnter="GoMouseEnter" MouseLeave="GoMouseLeave" FontWeight="Bold" />
+            <TextBlock Grid.Column="5" Name="txtRight" Text=">>" TextAlignment="Center" FontSize="18" Foreground="Gray" MouseUp="RightArrowClicked" Cursor="Hand" MouseEnter="GoMouseEnter" MouseLeave="GoMouseLeave" FontWeight="Bold" />
+            <Label Content="01" Grid.Row="2" Grid.Column="0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="02" Grid.Row="2" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="03" Grid.Row="2" Grid.Column="2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="04" Grid.Row="2" Grid.Column="3" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="05" Grid.Row="2" Grid.Column="4" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="06" Grid.Row="2" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="07" Grid.Row="2" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="08" Grid.Row="3" Grid.Column="0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="09" Grid.Row="3" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="10" Grid.Row="3" Grid.Column="2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="11" Grid.Row="3" Grid.Column="3" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="12" Grid.Row="3" Grid.Column="4" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="13" Grid.Row="3" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="14" Grid.Row="3" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="15" Grid.Row="4" Grid.Column="0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="16" Grid.Row="4" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="17" Grid.Row="4" Grid.Column="2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="18" Grid.Row="4" Grid.Column="3" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="19" Grid.Row="4" Grid.Column="4" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="20" Grid.Row="4" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="21" Grid.Row="4" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="22" Grid.Row="5" Grid.Column="0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="23" Grid.Row="5" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="24" Grid.Row="5" Grid.Column="2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="25" Grid.Row="5" Grid.Column="3" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="26" Grid.Row="5" Grid.Column="4" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="27" Grid.Row="5" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="28" Grid.Row="5" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="29" Grid.Row="6" Grid.Column="0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="30" Grid.Row="6" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="31" Grid.Row="6" Grid.Column="2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="32" Grid.Row="6" Grid.Column="3" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="33" Grid.Row="6" Grid.Column="4" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="34" Grid.Row="6" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="35" Grid.Row="6" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="36" Grid.Row="7" Grid.Column="0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="37" Grid.Row="7" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="38" Grid.Row="7" Grid.Column="2" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="39" Grid.Row="7" Grid.Column="3" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="40" Grid.Row="7" Grid.Column="4" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="41" Grid.Row="7" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+            <Label Content="42" Grid.Row="7" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
+        </Grid>
         <Canvas Width="200">
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="TextBlock" Height="40" Margin="0,40,0,122"/>
-            <Image x:Name="image" Height="32" Canvas.Right="10" Canvas.Bottom="5" Width="32" Source="add_plus.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave"/>
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="TextBlock" Height="20" Canvas.Top="40"/>
+            <Image x:Name="image" Height="32" Canvas.Right="10" Canvas.Bottom="5" Width="32" Source="add_plus.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave" MouseUp="image_MouseUp"/>
+            <TextBox x:Name="textBox" Height="80" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="Note Here" Canvas.Top="65" Width="187" Canvas.Left="3" Visibility="Hidden" GotFocus="textBox_GotFocus"/>
         </Canvas>
     </StackPanel>
 </Window>
