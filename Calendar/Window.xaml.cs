@@ -54,14 +54,14 @@ namespace Calendar
             }
             txtCMonth.Text = myYear.ToString() + "-" + (myMonth < 10 ? "0" : "") + myMonth.ToString();//改变年月的内容
 
-            
+
 
         }
 
         private void RightArrowClicked(object sender, MouseButtonEventArgs e)
         {
             myMonth++;
-            if(myMonth == 13)
+            if (myMonth == 13)
             {
                 myYear++;
                 myMonth = 1;
@@ -84,7 +84,7 @@ namespace Calendar
         {
             if (((Label)sender).Background != Brushes.Gray) //保留当前天的高亮
                 ((Label)sender).Background = new SolidColorBrush(Color.FromArgb(128, 125, 125, 125));
-            
+
             #region 鼠标进入日期,计算农历
             if (!is_selected_day)
             {
@@ -141,6 +141,30 @@ namespace Calendar
         {
             ((TextBlock)sender).Foreground = Brushes.Gray;
         }
+
+        #region 给加号添加动画效果
+        private void image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Image move_image = ((Image)sender);
+            Thickness move = new Thickness();
+            move = move_image.Margin;
+            int image_move_size = 3;
+            move.Right -= image_move_size;
+            move.Bottom -= image_move_size;
+            move_image.Margin = move;
+        }
+
+        private void image_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Image move_image = ((Image)sender);
+            Thickness move = new Thickness();
+            move = move_image.Margin;
+            int image_move_size = 3;
+            move.Right += image_move_size;
+            move.Bottom += image_move_size;
+            move_image.Margin = move;
+        }
+        #endregion
 
         #region 显示农历日期函数
         private void show_lunar_day(DateTime day_time_now)
