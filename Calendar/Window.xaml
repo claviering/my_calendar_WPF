@@ -7,8 +7,6 @@
         x:Class="Calendar.MainWindow"
         Title="Calendar" mc:Ignorable="d" Height="215" Width="450" FontFamily="Consolas" FontSize="12" Loaded="Window_Loaded" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="ToolWindow" >
     <StackPanel Orientation="Horizontal" >
-        
-    
         <Grid x:Name="myGrid" Width="250">
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
@@ -82,6 +80,9 @@
         <Label Content="41" Grid.Row="7" Grid.Column="5" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
         <Label Content="42" Grid.Row="7" Grid.Column="6" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="NumMouseEnter" MouseLeave="NumMouseLeave" MouseUp="NumMouseClick"/>
     </Grid>
-        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="TextBlock" Margin="0,40,0,122"/>
+        <Canvas Width="200">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="TextBlock" Height="40" Margin="0,40,0,122"/>
+            <Image x:Name="image" Height="32" Canvas.Right="10" Canvas.Bottom="5" Width="32" Source="add_plus.png"/>
+        </Canvas>
     </StackPanel>
 </Window>
