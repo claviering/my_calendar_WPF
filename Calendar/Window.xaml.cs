@@ -142,7 +142,7 @@ namespace Calendar
             ((TextBlock)sender).Foreground = Brushes.Gray;
         }
 
-        #region 给加号添加移动的动画效果
+        #region 给加号,保存添加移动的动画效果
         private void image_MouseEnter(object sender, MouseEventArgs e)
         {
             Image move_image = ((Image)sender);
@@ -152,7 +152,8 @@ namespace Calendar
             move.Right -= image_move_size;
             move.Bottom -= image_move_size;
             move_image.Margin = move;
-            ((Image)sender).ToolTip = "Add Notes"; //鼠标悬停提示
+            image.ToolTip = "Add Notes"; //鼠标悬停提示
+            image1.ToolTip = "Save Notes";
         }
 
         private void image_MouseLeave(object sender, MouseEventArgs e)
@@ -166,21 +167,29 @@ namespace Calendar
             move_image.Margin = move;
         }
         #endregion
-
-        #region 点击加号,文本框可见
+        #region 点击加号,文本框可见,加号隐藏,保存显示
         private void image_MouseUp(object sender, MouseButtonEventArgs e)
         {
             textBox.Visibility = Visibility;
+            image1.Visibility = Visibility; //显示保存
+            image.Visibility = Visibility.Hidden; //隐藏加
         }
         #endregion
-
         #region 文本框获取焦点清空提示内容
         private void textBox_GotFocus(object sender, RoutedEventArgs e)
         {
             textBox.Text = "";
         }
         #endregion
-
+        #region 点击保存图片
+        private void image1_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var input_string = textBox.Text;
+            textBox.Visibility = Visibility.Hidden;
+            image.Visibility = Visibility; //显示保存
+            image1.Visibility = Visibility.Hidden; //隐藏加
+        }
+        #endregion
         #region 显示农历日期函数
         private void show_lunar_day(DateTime day_time_now)
         {

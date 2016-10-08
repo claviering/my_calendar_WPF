@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("add_plus.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("save_notes.png")]
 
 

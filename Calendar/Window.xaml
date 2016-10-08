@@ -83,7 +83,8 @@
         <Canvas Width="200">
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="TextBlock" Height="20" Canvas.Top="40"/>
             <Image x:Name="image" Height="32" Canvas.Right="10" Canvas.Bottom="5" Width="32" Source="add_plus.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave" MouseUp="image_MouseUp"/>
-            <TextBox x:Name="textBox" Height="80" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="Note Here" Canvas.Top="65" Width="187" Canvas.Left="3" Visibility="Hidden" GotFocus="textBox_GotFocus"/>
+            <Image x:Name="image1" Height="32" Canvas.Right="10" Canvas.Bottom="5" Width="32" Source="save_notes.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave" Visibility="Hidden" MouseUp="image1_MouseUp"/>
+            <TextBox x:Name="textBox" Height="80" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="Note Here" Canvas.Top="65" Width="187" Canvas.Left="3" GotFocus="textBox_GotFocus" Visibility="Hidden" />
         </Canvas>
     </StackPanel>
 </Window>
