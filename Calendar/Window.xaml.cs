@@ -248,8 +248,11 @@ namespace Calendar
         #region 写文件
         public void write_file(string file_name, string notes_content)
         {
+            DirectoryInfo d = Directory.CreateDirectory("Notes"); //创建目录
+            Directory.SetCurrentDirectory("Notes"); //切换目录
             StreamWriter w_file = new StreamWriter(@"Notes"+file_name);
             w_file.WriteLine(notes_content);
+            Directory.SetCurrentDirectory(".."); //切换上一级目录
             w_file.Close();
         }
         #endregion
