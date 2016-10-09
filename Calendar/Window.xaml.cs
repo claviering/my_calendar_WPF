@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.IO;
 
 namespace Calendar
 {
@@ -27,8 +28,11 @@ namespace Calendar
         private int current_month = DateTime.Now.Month;//当前月,是不变的
         private object previous_laber = new Label();
         private bool is_selected_day = false; //是否选中某一天
+        private int current_day_of_children_Lable = 10;//当前天数是第几个Label
+        Notes one_note = new Notes();
         #endregion
 
+        #region 绘制日历
         private void SetTexts()
         {
             DateTime tempDateTime = new DateTime(myYear, myMonth, 1); //获取当年当月的第一天
@@ -44,7 +48,10 @@ namespace Calendar
                 #endregion
                 #region 高亮当前日
                 if (DateTime.Now.Day == tempDateTime.Day && tempDateTime.Month == current_month)
+                {
                     ((Label)myGrid.Children[i]).Background = Brushes.Gray;
+                    current_day_of_children_Lable = i; //保存当前日期的位置
+                }
                 else
                     ((Label)myGrid.Children[i]).Background = Brushes.White;
                 #endregion
@@ -57,6 +64,7 @@ namespace Calendar
 
 
         }
+        #endregion
 
         private void RightArrowClicked(object sender, MouseButtonEventArgs e)
         {
@@ -128,6 +136,9 @@ namespace Calendar
                 string selected_day = myMonth.ToString() + "/" + ((Label)sender).Content + "/" + myYear;
                 DateTime get_selected_day = Convert.ToDateTime(selected_day);
                 show_lunar_day(get_selected_day);
+                #region 类Notes的方法
+                one_note.get_selected_sender(sender);
+                #endregion
             }
             #endregion
         }
@@ -142,6 +153,13 @@ namespace Calendar
             ((TextBlock)sender).Foreground = Brushes.Gray;
         }
 
+        #region 获取选中的Label的日期xx-xx-xxxx,返回string
+        private string get_selected_date(object sender)
+        {
+            string date = myMonth.ToString() + "-" + ((Label)sender).Content + "-" + myYear;
+            return date;
+        }
+        #endregion
         #region 给加号,保存添加移动的动画效果
         private void image_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -181,13 +199,28 @@ namespace Calendar
             textBox.Text = "";
         }
         #endregion
-        #region 点击保存图片
+        #region 点击保存
         private void image1_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            var input_string = textBox.Text;
+            #region 控件的隐藏,显示
             textBox.Visibility = Visibility.Hidden;
             image.Visibility = Visibility; //显示保存
             image1.Visibility = Visibility.Hidden; //隐藏加
+            #endregion
+
+            #region 把Notes写入文件
+            var input_string = textBox.Text; //Note内容
+            if (is_selected_day)
+            {
+                sender = one_note.my_label;
+            }
+            else
+            {
+                sender = myGrid.Children[current_day_of_children_Lable];
+            }
+            string file_date = get_selected_date(sender);
+            one_note.write_file(file_date,input_string);
+            #endregion
         }
         #endregion
         #region 显示农历日期函数
@@ -201,6 +234,42 @@ namespace Calendar
         #endregion
 
     }
+    #region Notes类
+    /// <summary>
+    /// 属性:Label
+    /// 方法:读,写文件,获取选择的sender
+    /// </summary>
+    public class Notes
+    {
+        #region 属性
+        public object my_label = new Label();
+        #endregion
+        #region 方法
+        #region 写文件
+        public void write_file(string file_name, string notes_content)
+        {
+            StreamWriter w_file = new StreamWriter(@"Notes"+file_name);
+            w_file.WriteLine(notes_content);
+            w_file.Close();
+        }
+        #endregion
+        #region 读文件
+        public string read_file(string file_name)
+        {
+            StreamReader r_file = new StreamReader(@"Notes" + file_name);
+            string read_content = r_file.ReadToEnd();
+            return read_content;
+        }
+        #endregion
+        #region 获取选中sender
+        public void get_selected_sender(object sender)
+        {
+            my_label = sender;
+        }
+        #endregion
+        #endregion
+    }
+    #endregion
     #region 农历算法
     /// <summary>
     /// LunDay 的摘要说明。
