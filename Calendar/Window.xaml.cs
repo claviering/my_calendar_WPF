@@ -90,7 +90,7 @@ namespace Calendar
 
         private void NumMouseEnter(object sender, MouseEventArgs e)
         {
-            if (((Label)sender).Background != Brushes.Gray) //保留当前天的高亮
+            if (((Label)sender).Background == null) //保留当前天的高亮
                 ((Label)sender).Background = new SolidColorBrush(Color.FromArgb(128, 125, 125, 125));
 
             #region 鼠标进入日期,计算农历
@@ -105,7 +105,7 @@ namespace Calendar
 
         private void NumMouseLeave(object sender, MouseEventArgs e)
         {
-            if (((Label)sender).Background != Brushes.Gray) //保留当前天的高亮
+            if (((Label)sender).Background == null) //保留当前天的高亮
                 ((Label)sender).Background = null;
         }
 
@@ -115,6 +115,7 @@ namespace Calendar
             ((Label)previous_laber).BorderThickness = new Thickness(0.0);
             ((Label)previous_laber).BorderBrush = Brushes.Black;
             #endregion
+
             #region 点到灰色的日期,转跳月份
             if (((Label)sender).Foreground == Brushes.Gray)
             {
@@ -124,12 +125,14 @@ namespace Calendar
                     RightArrowClicked(null, null);
             }
             #endregion
+
             #region 高亮点击的日期
             ((Label)sender).BorderThickness = new Thickness(1.0);
             ((Label)sender).BorderBrush = Brushes.Black;
             previous_laber = sender; //保存高亮的对象,用于取消高亮
             #endregion
-            #region 鼠标选择日期,计算农历
+
+            #region 鼠标选择日期,计算农历,返回Notes的sender
             is_selected_day = true;
             if (is_selected_day)
             {
@@ -160,6 +163,7 @@ namespace Calendar
             return date;
         }
         #endregion
+
         #region 给加号,保存添加移动的动画效果
         private void image_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -185,6 +189,7 @@ namespace Calendar
             move_image.Margin = move;
         }
         #endregion
+
         #region 点击加号,文本框可见,加号隐藏,保存显示
         private void image_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -193,12 +198,14 @@ namespace Calendar
             image.Visibility = Visibility.Hidden; //隐藏加
         }
         #endregion
+
         #region 文本框获取焦点清空提示内容
         private void textBox_GotFocus(object sender, RoutedEventArgs e)
         {
             textBox.Text = "";
         }
         #endregion
+
         #region 点击保存
         private void image1_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -220,9 +227,13 @@ namespace Calendar
             }
             string file_date = get_selected_date(sender);
             one_note.write_file(file_date,input_string);
+
+            ((Label)sender).Background = Brushes.Yellow; //高亮有Notes的日期
+
             #endregion
         }
         #endregion
+
         #region 显示农历日期函数
         private void show_lunar_day(DateTime day_time_now)
         {
@@ -244,6 +255,7 @@ namespace Calendar
         #region 属性
         public object my_label = new Label();
         #endregion
+
         #region 方法
         #region 写文件
         public void write_file(string file_name, string notes_content)
@@ -256,14 +268,17 @@ namespace Calendar
             w_file.Close();
         }
         #endregion
+
         #region 读文件
         public string read_file(string file_name)
         {
+            Directory.SetCurrentDirectory("Notes");
             StreamReader r_file = new StreamReader(@"Notes" + file_name);
             string read_content = r_file.ReadToEnd();
             return read_content;
         }
         #endregion
+
         #region 获取选中sender
         public void get_selected_sender(object sender)
         {
@@ -273,6 +288,7 @@ namespace Calendar
         #endregion
     }
     #endregion
+
     #region 农历算法
     /// <summary>
     /// LunDay 的摘要说明。
