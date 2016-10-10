@@ -3,7 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.IO;
+using System.IO; //使用文件流
+using System.Collections.Generic; //使用List
 
 namespace Calendar
 {
@@ -12,6 +13,7 @@ namespace Calendar
         public MainWindow()
         {
             InitializeComponent();
+            set_dir_comboBox();
             SetTexts();
             show_lunar_day(DateTime.Now);
             Left = SystemParameters.PrimaryScreenWidth - Width - 10;
@@ -183,6 +185,7 @@ namespace Calendar
                 textBox.Visibility = Visibility;
                 image1.Visibility = Visibility;
                 image.Visibility = Visibility.Hidden;
+                image2.Visibility = Visibility;
                 textBox.Text = note_content;
             }
             else
@@ -190,6 +193,7 @@ namespace Calendar
                 textBox.Visibility = Visibility.Hidden;
                 image1.Visibility = Visibility.Hidden;
                 image.Visibility = Visibility;
+                image2.Visibility = Visibility.Hidden;
             }
             #endregion
         }
@@ -266,12 +270,13 @@ namespace Calendar
         }
         #endregion
 
-        #region 点击加号,文本框可见,加号隐藏,保存显示
+        #region 点击加号,文本框可见,加号隐藏,保存显示,删除显示
         private void image_MouseUp(object sender, MouseButtonEventArgs e)
         {
             textBox.Visibility = Visibility;
             image1.Visibility = Visibility; //显示保存
             image.Visibility = Visibility.Hidden; //隐藏加
+            image2.Visibility = Visibility;
         }
         #endregion
 
@@ -282,6 +287,7 @@ namespace Calendar
             textBox.Visibility = Visibility.Hidden;
             image.Visibility = Visibility; //显示保存
             image1.Visibility = Visibility.Hidden; //隐藏加
+            image2.Visibility = Visibility.Hidden;
             #endregion
 
             #region 把Notes写入文件
@@ -312,6 +318,41 @@ namespace Calendar
             textBlock.FontSize = 20;
         }
         #endregion
+
+        #region 点击删除
+        private void image2_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            textBox.Text = "";
+
+            #region 把Notes删除
+            var input_string = textBox.Text; //Note内容
+            if (is_selected_day)
+            {
+                sender = one_note.my_label;
+            }
+            else
+            {
+                sender = myGrid.Children[current_day_of_children_Lable];
+            }
+            string file_date = get_selected_date(sender);
+            one_note.write_file(file_date, input_string);
+
+            textBox.Visibility = Visibility.Hidden;
+            image2.Visibility = Visibility.Hidden;
+
+            ((Label)sender).Background = null; //高亮有Notes的日期
+
+            #endregion
+        }
+        #endregion
+
+        private void set_dir_comboBox()
+        {
+            List<string> data = new List<string>();
+            data.Add("节假日");
+            comboBox.ItemsSource = data;
+            comboBox.SelectedIndex = 0;
+        }
 
     }
     #region Notes类
