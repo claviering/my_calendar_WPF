@@ -273,6 +273,7 @@ namespace Calendar
         #region 点击加号,文本框可见,加号隐藏,保存显示,删除显示
         private void image_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            textBox.Text = ""; //初始化textBox
             textBox.Visibility = Visibility;
             image1.Visibility = Visibility; //显示保存
             image.Visibility = Visibility.Hidden; //隐藏加
@@ -322,10 +323,7 @@ namespace Calendar
         #region 点击删除
         private void image2_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            textBox.Text = "";
-
             #region 把Notes删除
-            var input_string = textBox.Text; //Note内容
             if (is_selected_day)
             {
                 sender = one_note.my_label;
@@ -335,10 +333,16 @@ namespace Calendar
                 sender = myGrid.Children[current_day_of_children_Lable];
             }
             string file_date = get_selected_date(sender);
-            one_note.write_file(file_date, input_string);
+            Directory.SetCurrentDirectory("Notes"); //切换目录
+            if (File.Exists(file_date))
+                File.Delete(file_date);
+            Directory.SetCurrentDirectory(".."); //切换目录
 
             textBox.Visibility = Visibility.Hidden;
             image2.Visibility = Visibility.Hidden;
+            image1.Visibility = Visibility.Hidden;
+            image.Visibility = Visibility;
+
 
             ((Label)sender).Background = null; //高亮有Notes的日期
 
@@ -386,6 +390,7 @@ namespace Calendar
             StreamReader r_file = new StreamReader(file_name);
             string read_content = r_file.ReadToEnd();
             Directory.SetCurrentDirectory("..");
+            r_file.Close();
             return read_content;
         }
         #endregion
