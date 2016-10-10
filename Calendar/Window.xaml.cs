@@ -181,7 +181,15 @@ namespace Calendar
                 Notes show_note = new Notes();
                 string note_content = show_note.read_file(note_file_name);
                 textBox.Visibility = Visibility;
+                image1.Visibility = Visibility;
+                image.Visibility = Visibility.Hidden;
                 textBox.Text = note_content;
+            }
+            else
+            {
+                textBox.Visibility = Visibility.Hidden;
+                image1.Visibility = Visibility.Hidden;
+                image.Visibility = Visibility;
             }
             #endregion
         }
@@ -267,13 +275,6 @@ namespace Calendar
         }
         #endregion
 
-        #region 文本框获取焦点清空提示内容
-        private void textBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            textBox.Text = "";
-        }
-        #endregion
-
         #region 点击保存
         private void image1_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -343,6 +344,7 @@ namespace Calendar
             Directory.SetCurrentDirectory("Notes");
             StreamReader r_file = new StreamReader(file_name);
             string read_content = r_file.ReadToEnd();
+            Directory.SetCurrentDirectory("..");
             return read_content;
         }
         #endregion
