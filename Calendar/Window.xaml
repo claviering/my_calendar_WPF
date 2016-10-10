@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" 
         x:Class="Calendar.MainWindow"
-        Title="Calendar" mc:Ignorable="d" Height="215" Width="450" FontFamily="Consolas" FontSize="12" Loaded="Window_Loaded" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="ToolWindow" >
+        Title="Calendar" mc:Ignorable="d" Height="215" Width="450" FontFamily="Consolas" FontSize="12" Loaded="Window_Loaded" ResizeMode="NoResize" ShowInTaskbar="True" WindowStyle="ToolWindow" >
     <StackPanel Orientation="Horizontal" >
         <Grid x:Name="myGrid" Width="250">
             <Grid.RowDefinitions>

@@ -46,6 +46,7 @@ namespace Calendar
                     ((Label)myGrid.Children[i]).Foreground = Brushes.Red;
                 }
                 #endregion
+
                 #region 高亮当前日
                 if (DateTime.Now.Day == tempDateTime.Day && tempDateTime.Month == current_month)
                 {
@@ -58,6 +59,20 @@ namespace Calendar
 
                 ((Label)myGrid.Children[i]).Content = tempDateTime.Day;//改变他们的content
                 tempDateTime = tempDateTime.AddDays(1);//日期加1
+
+                #region 判断日期是有Notes,并高亮
+                string note_file_name = get_selected_date((Label)myGrid.Children[i]);
+                if (!System.IO.Directory.Exists("Notes"))
+                    System.IO.Directory.CreateDirectory("Notes");
+                Directory.SetCurrentDirectory("Notes"); //切换目录
+                if (File.Exists(note_file_name))
+                {
+                    ((Label)myGrid.Children[i]).Background = Brushes.Yellow;
+                }
+                Directory.SetCurrentDirectory(".."); //切换目录
+                #endregion
+
+
             }
             txtCMonth.Text = myYear.ToString() + "-" + (myMonth < 10 ? "0" : "") + myMonth.ToString();//改变年月的内容
 
@@ -96,7 +111,21 @@ namespace Calendar
             #region 鼠标进入日期,计算农历
             if (!is_selected_day)
             {
-                string selected_day = myMonth.ToString() + "/" + ((Label)sender).Content + "/" + myYear;
+                int tmp_month;
+                int Label_content = (int)((Label)sender).Content;
+                if (Label_content > 23 && ((Label)sender).Foreground == Brushes.Gray)
+                {
+                    tmp_month = previous_month();
+                }
+                else if (Label_content < 13 && ((Label)sender).Foreground == Brushes.Gray)
+                {
+                    tmp_month = later_month();
+                }
+                else
+                {
+                    tmp_month = myMonth;
+                }
+                string selected_day = tmp_month.ToString() + "/" + ((Label)sender).Content + "/" + myYear;
                 DateTime get_selected_day = Convert.ToDateTime(selected_day);
                 show_lunar_day(get_selected_day);
             }
@@ -144,6 +173,17 @@ namespace Calendar
                 #endregion
             }
             #endregion
+
+            #region 读取文件,显示Notes
+            if (((Label)sender).Background == Brushes.Yellow)
+            {
+                string note_file_name = get_selected_date(sender);
+                Notes show_note = new Notes();
+                string note_content = show_note.read_file(note_file_name);
+                textBox.Visibility = Visibility;
+                textBox.Text = note_content;
+            }
+            #endregion
         }
 
         private void GoMouseEnter(object sender, MouseEventArgs e)
@@ -156,10 +196,38 @@ namespace Calendar
             ((TextBlock)sender).Foreground = Brushes.Gray;
         }
 
+        #region 返回日期显示当前月-1
+        private int previous_month()
+        {
+            return myMonth-1;
+        }
+        #endregion
+
+        #region 返回日期显示当前月+1
+        private int later_month()
+        {
+            return myMonth+1;
+        }
+        #endregion
+
         #region 获取选中的Label的日期xx-xx-xxxx,返回string
         private string get_selected_date(object sender)
         {
-            string date = myMonth.ToString() + "-" + ((Label)sender).Content + "-" + myYear;
+            int tmp_month;
+            int Label_content = (int)((Label)sender).Content;
+            if (Label_content > 23 && ((Label)sender).Foreground == Brushes.Gray)
+            {
+                tmp_month = previous_month();
+            }
+            else if (Label_content < 13 && ((Label)sender).Foreground == Brushes.Gray)
+            {
+                tmp_month = later_month();
+            }
+            else
+            {
+                tmp_month = myMonth;
+            }
+            string date = tmp_month.ToString() + "-" + ((Label)sender).Content + "-" + myYear;
             return date;
         }
         #endregion
@@ -262,7 +330,7 @@ namespace Calendar
         {
             DirectoryInfo d = Directory.CreateDirectory("Notes"); //创建目录
             Directory.SetCurrentDirectory("Notes"); //切换目录
-            StreamWriter w_file = new StreamWriter(@"Notes"+file_name);
+            StreamWriter w_file = new StreamWriter(file_name);
             w_file.WriteLine(notes_content);
             Directory.SetCurrentDirectory(".."); //切换上一级目录
             w_file.Close();
@@ -273,7 +341,7 @@ namespace Calendar
         public string read_file(string file_name)
         {
             Directory.SetCurrentDirectory("Notes");
-            StreamReader r_file = new StreamReader(@"Notes" + file_name);
+            StreamReader r_file = new StreamReader(file_name);
             string read_content = r_file.ReadToEnd();
             return read_content;
         }
