@@ -85,8 +85,8 @@
             <Image x:Name="image" Height="32" Canvas.Right="10" Canvas.Bottom="5" Width="32" Source="add_plus.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave" MouseUp="image_MouseUp"/>
             <Image x:Name="image1" Height="32" Canvas.Right="10" Canvas.Bottom="5" Width="32" Source="save_notes.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave" Visibility="Hidden" MouseUp="image1_MouseUp"/>
             <TextBox x:Name="textBox" Height="80" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Text="" Canvas.Top="65" Width="187" Canvas.Left="3" Visibility="Hidden" />
-            <ComboBox x:Name="comboBox" Canvas.Left="10" Canvas.Top="10" Width="120" />
             <Image x:Name="image2" Height="32" Canvas.Right="45" Canvas.Bottom="5" Width="32" RenderTransformOrigin="0.469,0.469" Source="delete.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave" Visibility="Hidden" MouseUp="image2_MouseUp"/>
+            <TextBox x:Name="textBox1" Canvas.Left="3" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="65" Height="80" Width="187"/>
         </Canvas>
     </StackPanel>
 </Window>
