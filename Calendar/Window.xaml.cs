@@ -74,7 +74,6 @@ namespace Calendar
                 Directory.SetCurrentDirectory(".."); //切换目录
                 #endregion
 
-
             }
             txtCMonth.Text = myYear.ToString() + "-" + (myMonth < 10 ? "0" : "") + myMonth.ToString();//改变年月的内容
 
@@ -278,6 +277,7 @@ namespace Calendar
             image1.Visibility = Visibility; //显示保存
             image.Visibility = Visibility.Hidden; //隐藏加
             image2.Visibility = Visibility;
+            textBox.Focus(); //焦点在textBox
         }
         #endregion
 
@@ -344,7 +344,7 @@ namespace Calendar
             image.Visibility = Visibility;
 
 
-            ((Label)sender).Background = null; //高亮有Notes的日期
+            ((Label)sender).Background = null; //取消高亮有Notes的日期
 
             #endregion
         }
