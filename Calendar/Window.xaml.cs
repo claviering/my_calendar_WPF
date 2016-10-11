@@ -338,6 +338,20 @@ namespace Calendar
         }
         #endregion
 
+        #region 消除假日显示的蓝色边框
+        private void textBox1_MouseEnter(object sender, MouseEventArgs e)
+        {
+            textBox1.BorderThickness = new Thickness(1.0);
+            textBox1.BorderBrush = Brushes.White;
+        }
+
+        private void textBox1_MouseLeave(object sender, MouseEventArgs e)
+        {
+            textBox1.BorderThickness = new Thickness(1.0);
+            textBox1.BorderBrush = Brushes.White;
+        }
+        #endregion
+
         #region 点击删除
         private void image2_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -460,7 +474,23 @@ namespace Calendar
                                      "12 20 澳门回归纪念",
                                      "12 21 国际篮球日",
                                      "12 24 平安夜",
-                                     "12 25 圣诞节"
+                                     "12 25 圣诞节",
+
+                                     "01 01 春节(农历)",
+                                     "01 02 春节(农历)",
+                                     "01 03 春节(农历)",
+                                     "01 15 元宵节(农历)",
+                                     "05 05 端午节(农历)",
+                                     "06 24 火把节(农历)",
+                                     "06 25 火把节(农历)",
+                                     "06 26 火把节(农历)",
+                                     "07 07 七夕情人节(农历)",
+                                     "07 15 中元节(农历)",
+                                     "08 15 中秋节(农历)",
+                                     "09 09 重阳节(农历)",
+                                     "12 08 腊八节(农历)",
+                                     "12 24 小年(农历)",
+                                     "12 30 除夕(农历)"
                                      };
         //农历节日*表示放假日
         private static string[] lFtv = {
@@ -527,6 +557,7 @@ namespace Calendar
         #endregion
     }
     #endregion
+
     #region Notes类
     /// <summary>
     /// 属性:Label
