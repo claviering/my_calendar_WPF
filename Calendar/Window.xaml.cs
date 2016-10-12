@@ -30,11 +30,16 @@ namespace Calendar
         private bool is_selected_day = false; //是否选中某一天
         private int current_day_of_children_Lable = 10;//当前天数是第几个Label
         Notes one_note = new Notes();
+
         Holiday holiday = new Holiday();
         private string holiday_string = "";
+
+        private int start_day_week_mode = 0;
+        private int end_day_week_mode = 0;
+        private bool is_week_mode = false;
         #endregion
 
-        #region 绘制日历
+        #region 绘制日历,Month mode
         private void SetTexts()
         {
             holiday_string = ""; //初始化假日
@@ -90,31 +95,83 @@ namespace Calendar
             textBox1.BorderBrush = Brushes.White;
             #endregion
 
+        }
+        #endregion
 
+        #region 显示日历,Week mode
+        private void set_text_week_mode(int label_index)
+        {
+            start_day_week_mode = label_index;
+            end_day_week_mode = label_index + 6;
 
+            for (int i = start_day_week_mode; i < end_day_week_mode + 1; i++)
+            {
+                ((Label)myGrid.Children[i]).Visibility = Visibility;
+            }
+
+            #region 隐藏Label
+            for (int i = 10; i < label_index; i++) 
+            {
+                ((Label)myGrid.Children[i]).Visibility = Visibility.Hidden;
+            }
+            for (int i = end_day_week_mode + 1; i < 52; i++) 
+            {
+                ((Label)myGrid.Children[i]).Visibility = Visibility.Hidden;
+            }
+            #endregion
+            txtCMonth.Text = ((Label)myGrid.Children[start_day_week_mode]).Content.ToString() + "-" + ((Label)myGrid.Children[end_day_week_mode]).Content.ToString();
+        }
+    #endregion
+
+        #region 显示日历,Month mode
+    private void set_text_month_mode()
+        {
+            for (int i = 10; i < myGrid.Children.Count; i++) //遍厉所有日期,改变他们的content,对应上日期
+            {
+                ((Label)myGrid.Children[i]).Visibility = Visibility;
+            }
         }
         #endregion
 
         private void RightArrowClicked(object sender, MouseButtonEventArgs e)
         {
-            myMonth++;
-            if (myMonth == 13)
+            if (is_week_mode)
             {
-                myYear++;
-                myMonth = 1;
+                ((Label)myGrid.Children[start_day_week_mode++]).Visibility = Visibility.Hidden;
+                end_day_week_mode++;
+
+                if (end_day_week_mode > 51)
+                {
+                    show_next_month();
+                    set_text_week_mode(11);
+                }
+                ((Label)myGrid.Children[end_day_week_mode]).Visibility = Visibility;
+                txtCMonth.Text = ((Label)myGrid.Children[start_day_week_mode]).Content.ToString() + "-" + ((Label)myGrid.Children[end_day_week_mode]).Content.ToString();
             }
-            SetTexts();
+            else
+            {
+                show_next_month();
+            }
         }
 
         private void LeftArrowClicked(object sender, MouseButtonEventArgs e)
         {
-            myMonth--;
-            if (myMonth == 0)
+            if (is_week_mode)
             {
-                myYear--;
-                myMonth = 12;
+                ((Label)myGrid.Children[end_day_week_mode--]).Visibility = Visibility.Hidden;
+                start_day_week_mode--;
+                if (start_day_week_mode < 10)
+                {
+                    show_previous_month();
+                    set_text_week_mode(44);
+                }
+                ((Label)myGrid.Children[start_day_week_mode]).Visibility = Visibility;
+                txtCMonth.Text = ((Label)myGrid.Children[start_day_week_mode]).Content.ToString() + "-" + ((Label)myGrid.Children[end_day_week_mode]).Content.ToString();
             }
-            SetTexts();
+            else
+            {
+                show_previous_month();
+            }
         }
 
         private void NumMouseEnter(object sender, MouseEventArgs e)
@@ -160,13 +217,17 @@ namespace Calendar
             #endregion
 
             #region 点到灰色的日期,转跳月份
-            if (((Label)sender).Foreground == Brushes.Gray)
+            if (!is_week_mode)
             {
-                if ((int)((Label)sender).Content > 17)
-                    LeftArrowClicked(null, null);
-                else
-                    RightArrowClicked(null, null);
+                if (((Label)sender).Foreground == Brushes.Gray)
+                {
+                    if ((int)((Label)sender).Content > 17)
+                        LeftArrowClicked(null, null);
+                    else
+                        RightArrowClicked(null, null);
+                }
             }
+
             #endregion
 
             #region 高亮点击的日期
@@ -188,7 +249,7 @@ namespace Calendar
             }
             #endregion
 
-            #region 读取文件,显示Notes
+            #region 点击黄色高亮日期,读取文件,显示Notes
             if (((Label)sender).Background == Brushes.Yellow)
             {
                 string note_file_name = get_selected_date(sender);
@@ -222,6 +283,46 @@ namespace Calendar
         {
             ((TextBlock)sender).Foreground = Brushes.Gray;
         }
+
+        #region 返回今天几号的Label的index
+        private int find_today_label_index()
+        {
+            for (int i = 10; i < myGrid.Children.Count; i++) //遍厉所有日期,改变他们的content,对应上日期
+            {
+                if ((int)((Label)myGrid.Children[i]).Content == DateTime.Now.Day)
+                {
+                    return i;
+                }
+            }
+            return 10;
+        }
+        #endregion
+
+        #region 显示下一个月
+        private void show_next_month()
+        {
+            myMonth++;
+            if (myMonth == 13)
+            {
+                myYear++;
+                myMonth = 1;
+            }
+            SetTexts();
+        }
+        #endregion
+
+        #region 显示上一个月
+        private void show_previous_month()
+        {
+            myMonth--;
+            if (myMonth == 0)
+            {
+                myYear--;
+                myMonth = 12;
+            }
+            SetTexts();
+        }
+        #endregion
 
         #region 返回日期显示当前月-1
         private int previous_month()
@@ -344,11 +445,52 @@ namespace Calendar
             textBox1.BorderThickness = new Thickness(1.0);
             textBox1.BorderBrush = Brushes.White;
         }
+        #endregion
 
+        #region 高亮Week month
         private void textBox1_MouseLeave(object sender, MouseEventArgs e)
         {
             textBox1.BorderThickness = new Thickness(1.0);
             textBox1.BorderBrush = Brushes.White;
+        }
+
+        private void textBlock1_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ((TextBlock)sender).Background = Brushes.Gray;
+        }
+
+        private void textBlock1_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ((TextBlock)sender).Background = null;
+        }
+        #endregion
+
+        #region 点击触发周显示
+        private void textBlock1_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            is_week_mode = true;
+            set_text_week_mode(find_today_label_index());
+        }
+        #endregion
+
+        #region 点击触发月显示
+        private void textBlock2_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            is_week_mode = false;
+            set_text_month_mode();
+            SetTexts();
+        }
+        #endregion
+
+        #region 返回当月
+        private void today_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            myMonth = current_month;
+            SetTexts();
+            if (is_week_mode)
+            {
+                set_text_week_mode(current_day_of_children_Lable);
+            }
         }
         #endregion
 
@@ -385,6 +527,7 @@ namespace Calendar
 
 
     }
+
     #region Holiday类
     class Holiday
     {
