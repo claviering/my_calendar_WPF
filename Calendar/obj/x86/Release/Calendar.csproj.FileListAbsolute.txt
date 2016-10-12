@@ -1,0 +1,12 @@
+C:\Users\sunn\Desktop\Calendar-master\Calendar\bin\Release\Calendar.exe
+C:\Users\sunn\Desktop\Calendar-master\Calendar\bin\Release\Calendar.pdb
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Release\Window.g.cs
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Release\App.g.cs
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Release\Calendar_MarkupCompile.cache
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Release\Calendar_MarkupCompile.lref
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Release\Window.baml
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Release\Calendar.g.resources
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Release\Calendar.Properties.Resources.resources
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Release\Calendar.csproj.GenerateResource.Cache
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Release\Calendar.exe
+C:\Users\sunn\Desktop\Calendar-master\Calendar\obj\x86\Release\Calendar.pdb

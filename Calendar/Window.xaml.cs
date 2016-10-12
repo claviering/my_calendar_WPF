@@ -24,21 +24,32 @@ namespace Calendar
         }
 
         #region 定义一些成员变量
-        private int myYear = DateTime.Now.Year, myMonth = DateTime.Now.Month;
+        private int myYear = DateTime.Now.Year, myMonth = DateTime.Now.Month; //myMonth是显示的月份,会随时改变
         private int current_month = DateTime.Now.Month;//当前月,是不变的
         private object previous_laber = new Label();
         private bool is_selected_day = false; //是否选中某一天
         private int current_day_of_children_Lable = 10;//当前天数是第几个Label
         Notes one_note = new Notes();
-
+        /// <summary>
+        /// 假期功能需要的成员变量
+        /// holiday_string 保存要显示的假日
+        /// </summary>
         Holiday holiday = new Holiday();
-        private string holiday_string = "";
-
+        private string holiday_string = ""; 
+        /// <summary>
+        /// 按周显示功能需要的成员变量
+        /// </summary>
         private int start_day_week_mode = 0;
         private int end_day_week_mode = 0;
         private bool is_week_mode = false;
         #endregion
 
+        /// <summary>
+        /// 按月显示日历
+        /// 思路:xaml布局前端,cs后台动态改变每天元素的Text或content,使用DateTime获取第一天,计算第一个Label的日期,后面加1
+        /// 小功能:高亮星期六日,高亮今天,高亮有Notes的日期
+        /// 遍厉每一Label对应的日期时,计算这一天是否有假日,返回到holiday_string
+        /// </summary>
         #region 绘制日历,Month mode
         private void SetTexts()
         {
@@ -99,6 +110,11 @@ namespace Calendar
         #endregion
 
         #region 显示日历,Week mode
+        /// <summary>
+        /// 显示一周,只是简单的显示了7天
+        /// 思路:隐藏除了这7天的Label
+        /// </summary>
+        /// <param name="label_index">需要显示这7天中的第一天Label的编号</param>
         private void set_text_week_mode(int label_index)
         {
             start_day_week_mode = label_index;
@@ -124,7 +140,11 @@ namespace Calendar
     #endregion
 
         #region 显示日历,Month mode
-    private void set_text_month_mode()
+        /// <summary>
+        /// 按月显示日历
+        /// 思路:把按周显示时隐藏的Label显示出来
+        /// </summary>
+        private void set_text_month_mode()
         {
             for (int i = 10; i < myGrid.Children.Count; i++) //遍厉所有日期,改变他们的content,对应上日期
             {
@@ -133,6 +153,14 @@ namespace Calendar
         }
         #endregion
 
+        /// <summary>
+        /// 点击向右时触发的事件
+        /// 分按月显示和按周显示
+        /// 按月显示直接调用show_next_month()
+        /// 按周显示要注意边界条件,到达边境给set_text_week_mode传递参数11
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RightArrowClicked(object sender, MouseButtonEventArgs e)
         {
             if (is_week_mode)
@@ -154,6 +182,12 @@ namespace Calendar
             }
         }
 
+        /// <summary>
+        /// 点击向左时触发的事件
+        /// 类似楼上
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LeftArrowClicked(object sender, MouseButtonEventArgs e)
         {
             if (is_week_mode)
@@ -174,6 +208,13 @@ namespace Calendar
             }
         }
 
+        /// <summary>
+        /// 鼠标指向一个日期时调用
+        /// 指向一个日期,动态显示农历
+        /// 特殊情况是指向灰色日期的时候,需要更改传参的月数
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumMouseEnter(object sender, MouseEventArgs e)
         {
             if (((Label)sender).Background == null) //保留当前天的高亮
@@ -209,6 +250,12 @@ namespace Calendar
                 ((Label)sender).Background = null;
         }
 
+        /// <summary>
+        /// 鼠标点击一个日期时触发
+        /// 功能:高亮点击的日期,锁定农历显示,读取Notes,转跳日期
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumMouseClick(object sender, MouseEventArgs e)
         {
             #region 取消高亮点击的日期
@@ -284,6 +331,10 @@ namespace Calendar
             ((TextBlock)sender).Foreground = Brushes.Gray;
         }
 
+        /// <summary>
+        /// 函数功能:返回今天几号对应的Label的位置
+        /// </summary>
+        /// <returns>返回int类型</returns>
         #region 返回今天几号的Label的index
         private int find_today_label_index()
         {
@@ -298,6 +349,9 @@ namespace Calendar
         }
         #endregion
 
+        /// <summary>
+        /// myMonth++,显示下一个月
+        /// </summary>
         #region 显示下一个月
         private void show_next_month()
         {
@@ -338,6 +392,11 @@ namespace Calendar
         }
         #endregion
 
+        /// <summary>
+        /// 获得Label对应的日期mm-dd-yyyy,用于Notes的操作,包括读写
+        /// </summary>
+        /// <param name="sender">选中的Label</param>
+        /// <returns>返回string类型,格式xx-xx-xxxx</returns>
         #region 获取选中的Label的日期xx-xx-xxxx,返回string
         private string get_selected_date(object sender)
         {
@@ -359,7 +418,12 @@ namespace Calendar
             return date;
         }
         #endregion
-
+       
+        /// <summary>
+        /// 原理:位置的偏移
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         #region 给加号,保存添加移动的动画效果
         private void image_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -399,6 +463,14 @@ namespace Calendar
         }
         #endregion
 
+        /// <summary>
+        /// 点击保存图标
+        /// 功能:相关控件的隐藏和显示
+        /// 没有选择那一天默认今天
+        /// 使用日期作为文件名,创建文件保存Notes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         #region 点击保存
         private void image1_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -429,6 +501,11 @@ namespace Calendar
         }
         #endregion
 
+        /// <summary>
+        /// 通过一个DateTime类型直接计算农历,显示出来
+        /// 通过调用LunDay类里的放法
+        /// </summary>
+        /// <param name="day_time_now">当前时间</param>
         #region 显示农历日期函数
         private void show_lunar_day(DateTime day_time_now)
         {
@@ -465,7 +542,7 @@ namespace Calendar
         }
         #endregion
 
-        #region 点击触发周显示
+        #region 点击按周显示
         private void textBlock1_MouseUp(object sender, MouseButtonEventArgs e)
         {
             is_week_mode = true;
@@ -473,7 +550,12 @@ namespace Calendar
         }
         #endregion
 
-        #region 点击触发月显示
+        /// <summary>
+        /// 先把Label全部设置为可见,再调用SetTexts,显示月
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        #region 点击按月显示
         private void textBlock2_MouseUp(object sender, MouseButtonEventArgs e)
         {
             is_week_mode = false;
@@ -482,7 +564,13 @@ namespace Calendar
         }
         #endregion
 
-        #region 返回当月
+        /// <summary>
+        /// 重置myMonth成员变量
+        /// 如果是在week模式也返回显示今天的一周,传递今天的Label位置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        #region 返回今天所在的月
         private void today_MouseUp(object sender, MouseButtonEventArgs e)
         {
             myMonth = current_month;
@@ -494,6 +582,11 @@ namespace Calendar
         }
         #endregion
 
+        /// <summary>
+        /// 先获取选中Label的日期,作为文件名搜索,存在就删除对应的Notes文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         #region 点击删除
         private void image2_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -524,10 +617,11 @@ namespace Calendar
             #endregion
         }
         #endregion
-
-
     }
 
+    /// <summary>
+    /// 把全部节日保存在string里,根据日期一个一个匹配,找到就返回,时间复杂度有点大
+    /// </summary>
     #region Holiday类
     class Holiday
     {
